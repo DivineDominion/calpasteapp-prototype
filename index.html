@@ -1,0 +1,103 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>jQTouch &beta;</title>
+  <link rel="stylesheet" href="./themes/css/apple.css" title="jQTouch">
+
+  <script src="./src/lib/zepto.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="./src/jqtouch.min.js" type="text/javascript" charset="utf-8"></script>
+  <!-- Uncomment the following two lines (and comment out the previous two) to use jQuery instead of Zepto. -->
+  <!-- <script src="./src/lib/jquery-1.7.min.js" type="application/x-javascript" charset="utf-8"></script> -->
+  <!-- <script src="./src/jqtouch-jquery.min.js" type="application/x-javascript" charset="utf-8"></script> -->
+
+  <script src="./handler.js" type="text/javascript" charset="utf-8"></script>
+  <style type="text/css" media="screen">
+  #jqt.fullscreen #home .info {
+    display: none;
+  }
+  div#jqt #about {
+    padding: 100px 10px 40px;
+    text-shadow: rgba(0, 0, 0, 0.3) 0px -1px 0;
+    color: #999;
+    font-size: 13px;
+    text-align: center;
+    background: #161618;
+  }
+  div#jqt #about p {
+    margin-bottom: 8px;
+  }
+  div#jqt #about a {
+    color: #fff;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  </style>
+</head>
+<body>
+  <div id="jqt">
+    <div id="forms">
+      <div class="toolbar">
+        <h1>Forms</h1>
+        <a href="#" class="back">Back</a>
+      </div>
+      <form class="scroll">
+        <ul class="edit rounded">
+          <li><input type="text" name="name" placeholder="Text" id="some_name" /></li>
+          <li><input type="search" name="search" placeholder="Search" id="some_name" /></li>
+          <li><input type="tel" name="phone" placeholder="Phone" id="some_name"  /></li>
+          <li><input type="number" name="zip" placeholder="Numbers" id="some_name" /></li>                    
+          <li><input type="email" name="email" placeholder="Email" id="some_name" /></li>
+          <li><input type="url" name="url" placeholder="Url" id="some_name" /></li>
+          <li><textarea placeholder="Textarea" ></textarea></li>
+          <li>Sample Toggle <span class="toggle"><input type="checkbox" /></span></li>
+          <li class="arrow">
+            <select id="lol">
+              <optgroup label="Swedish Cars">
+                <option value ="volvo">Volvo</option>
+                <option value ="saab">Saab</option>
+              </optgroup>
+              <optgroup label="German Cars">
+                <option value ="mercedes">Mercedes</option>
+                <option value ="audi">Audi</option>
+              </optgroup>
+            </select>
+          </li>
+          <li><input type="password" name="some_name" value="iphonedelcopon" id="some_name" /></li>
+          <li><input type="checkbox" name="food" value="punch" title="Punch" /></li>
+          <li><input type="checkbox" name="food" value="pie" checked="checked" title="Pie" /></li>
+          <li><input type="radio" name="bag" value="paper" title="Paper" /></li>
+          <li><input type="radio" name="bag" value="plastic" title="Plastic" /></li>
+        </ul>
+      </form>
+    </div>
+    <div id="metal" class="current">
+      <div class="toolbar">
+        <h1>Prototype</h1>
+      </div>
+      <ul class="metal scroll">
+        <!-- <li class="arrow"><a href="#"><small>AM</small> 9:40 <em>Buenos Aires</em></a></li> -->
+        <li class="arrow"><a href="#forms">Arbeiten <em>4h 0min</em></a></li>
+      </ul>
+    </div>
+    <form id="ajax_post" action="ajax_post.php" method="POST" class="form">
+      <div class="toolbar">
+        <h1>Post Demo</h1>
+        <a class="back" href="#">Ajax</a>
+      </div>
+      <div class="scroll">
+        <ul class="rounded">
+          <li><input type="text" name="zip" value="" placeholder="Zip Code" /></li>
+        </ul>
+        <h2>Favorite color?</h2>
+        <ul class="rounded">
+          <li><input type="radio" name="color" value="green" title="Green" /></li>
+          <li><input type="radio" name="color" value="blue" title="Blue" /></li>
+          <li><input type="radio" name="color" value="red" title="Red" /></li>
+        </ul>
+        <a style="margin-top: 10px; margin-bottom: 10px; color:rgba(0,0,0,.9)" href="#" class="submit whiteButton">Submit</a>
+      </div>
+    </form>
+  </div>
+</body>
+</html>
