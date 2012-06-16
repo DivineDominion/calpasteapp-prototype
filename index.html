@@ -11,7 +11,7 @@
 </head>
 <body>
 
-  <div data-role="page" id="home" class="template_overview">
+  <div data-role="page" id="template_overview">
     <div data-role="header" data-theme="a">
       <h1>Templates</h1>
       <a href="#" data-direction="reverse">Edit</a>
@@ -33,11 +33,11 @@
   <div data-role="page" id="new_entry">
     <div data-role="header" data-theme="a">
       <h1>New Entry</h1>
-      <a href="#home" data-direction="reverse" data-transition="slideup">Cancel</a>
-      <a href="#home" class="done" data-direction="reverse" data-transition="slideup" data-theme="d">Done</a>
+      <a href="#template_overview" data-direction="reverse" data-transition="slideup">Cancel</a>
+      <a href="#template_overview" class="done" data-direction="reverse" data-transition="slideup" data-theme="d">Done</a>
     </div>
     <div data-role="content">
-      <form>
+      <form class="details">
         <ul data-role="listview" data-inset="true">
           <li>
             <input type="text" name="title" id="title" value="" placeholder="Title"/>
@@ -107,8 +107,8 @@
   <div data-role="page" id="assign">
     <div data-role="header" data-theme="a">
       <h1>Assign</h1>
-      <a href="#home" data-direction="reverse" data-transition="slideup">Cancel</a>
-      <a href="#home" data-direction="reverse" data-transition="slideup" data-theme="d">Done</a>
+      <a href="#template_overview" data-direction="reverse" data-transition="slideup">Cancel</a>
+      <a href="#template_overview" data-direction="reverse" data-transition="slideup" data-theme="d">Done</a>
     </div>
     <div data-role="content">
       <h4 class="event_title">TITLE</h4>

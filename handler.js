@@ -9,7 +9,7 @@
     // global initializer
     init = function() {
         // Bind events on items
-        $('.template_overview .template').bind('tap', function(event) {
+        $('#template_overview .template').bind('tap', function(event) {
             console.log('test');
         });
         $('#new_entry .done').tap(function(event) {
@@ -21,8 +21,8 @@
     };
     
     var Templates = {
-        selector: $('.template_overview .templates'),
-
+        selector: $('#template_overview .templates'),
+        
         add: function(title) {
             if (!title) {
                 throw new StupidError("no title");
@@ -33,9 +33,8 @@
                          + '        <h3 class="ui-li-heading">' + title + '</h3>'
                          + '    </a>'
                          + '</li>';
-            // Insert element, then refresh list to apply style
             this.selector.append(new_elem);
-            this.selector.listview("refresh"); 
+            this.selector.listview("refresh"); // apply JQ styling
             // FIXME cannot call methods on listview prior to initialization; attempted to call method 'refresh'
         }
     };
