@@ -6,41 +6,15 @@
 // 
 
 (function() {
-    // global initializer
-    init = function() {
-        // Bind events on items
-        $('#template_overview .template').bind('tap', function(event) {
-            console.log('test');
-        });
-        $('#new_entry .done').tap(function(event) {
-            var isValid = true;
-            // TODO validate values
-
-            if (isValid) {
-                var item = 'new';
-                // TODO read values
-                
-                Templates.add(item);
-                
-                // TODO reset values
-                
-                $.mobile.changePage($('#template_overview'), { reverse: true, transition: 'slideup' });
-            }
-        });
-        $('#new_entry .details :text').bind("change", function(event) {
-            console.log(":"+ $(this).val());
-        });
-        $('#assign .event_title').text('test!!');
-//        $('#assign .event_time')
-    };
-    
     var Templates = {
         selector: $('#template_overview .templates'),
-        
+        items: [],
         add: function(title) {
             if (!title) {
                 throw new StupidError("no title");
             }
+            
+            this.items.push(title);
             
             var new_elem = '<li>'
                          + '    <a href="#assign" class="template" data-transition="slideup">'
@@ -53,10 +27,43 @@
         }
     };
     
+    // global initializer
+    init = function() {
+        Templates.add("Work shift");
+
+        // Bind events on items
+        $('#template_overview .template').bind('tap', function(event) {
+            console.log('test');
+        });
+
+        // Disable "Done" button by default, until Title is entered
+        $('#new_entry').bind('pagecreate', function(event) {    
+        });
+        $('#new_entry .done').tap(function(event) {
+            var isValid = true;
+            // TODO validate values
+
+            if (isValid) {
+                var item = 'New Entry';
+                // TODO read values
+
+                Templates.add(item);
+
+                // TODO reset values
+
+                $.mobile.changePage($('#template_overview'), { reverse: true, transition: 'slideup' });
+            }
+        });
+        $('#new_entry .details :text').bind("change", function(event) {
+            console.log(":"+ $(this).val());
+        });
+        $('#assign .event_title').text('test!!');
+//        $('#assign .event_time')
+    };
     // Programmatical errors
     function StupidError(message) {
-      this.name = "StupidError";
-      this.message = (message || "");
+        this.name = "StupidError";
+        this.message = (message || "");
     }
     StupidError.prototype = new Error();
     StupidError.prototype.constructor = StupidError;
