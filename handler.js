@@ -80,9 +80,16 @@ init = function() {
         
         if ($edit.hasClass('toggled')) {
             $edit.removeClass('toggled');
-        } else {
             
+            $('#template_overview .templates').find('li').each(function(index) {
+                $(this).find('.ui-icon').addClass('ui-icon-arrow-r').removeClass('ui-icon-gear');
+            });
+        } else {
             $edit.addClass('toggled');
+            
+            $('#template_overview .templates').find('li').each(function(index) {
+                $(this).find('.ui-icon').removeClass('ui-icon-arrow-r').addClass('ui-icon-gear');
+            });
         }
     });
     $('#template_overview .add_template').bind('tap', function(event) {
