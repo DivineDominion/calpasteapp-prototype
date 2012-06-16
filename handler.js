@@ -75,7 +75,9 @@ init = function() {
     $('#assign .datetime').bind("vclick", function(event) {
        $('#assign .datetime input').focus();
     });
-    
+    $('#template_overview .add_template').bind('tap', function(event) {
+        $.mobile.changePage($('#new_entry'), { transition: 'slideup' }); 
+    });
     $('#new_entry .done').tap(function(event) {
         var isValid = true;
         // TODO validate values
@@ -85,7 +87,6 @@ init = function() {
             if (entryTitle === "") {
                 entryTitle = 'New Entry';
             }
-            
             
             // TODO read values
 
