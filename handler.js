@@ -133,6 +133,9 @@ var Templates = (function() {
 // global initializer
 init = function() {
     Templates.add_item("Work shift");
+    
+    var $default_calendar = null;
+    var selected_calendar = null;
 
     // Focus datetime picker automatically
     $('#assign').bind("pageshow", function(event) {
@@ -159,8 +162,103 @@ init = function() {
         // reset values
         $('#edit_event h1').text('New Entry');
         $('#edit_event input').attr('value', '');
+        
+        selected_calendar = null;
     });
     
+
+    $('#calendar').live('pagebeforecreate', function(event) {
+        $default_calendar = $('#calendar .calendars').find('li').first();
+        $default_calendar.jqmData('icon', 'check');
+        $default_calendar.find('a').append('<span class="detail">Default</span>');
+    });
+    $('#calendar').live('pagebeforeshow', function(event) {
+        $('#calendar .calendars').find('li').each(function(index) {
+            var $li = $(this);
+            
+            // abort on second try to create divs
+            if ($li.find('.mkdef').length !== 0) {
+                return;
+            }
+            
+            
+            var def = $('<div class="mkdef">make default</div>');
+            $li.append(def);
+            
+            def.bind('tap', function(event) {
+               console.log('def');
+
+               // undefault old one
+               $default_calendar.find('.detail').remove();
+
+               // default new one
+               $li.find('a').append('<span class="detail">Default</span>');
+               $default_calendar = $li;
+            });
+        }); 
+    });
+    $('#calendar .cancel').tap(function() {
+        $.mobile.changePage($('#edit_event'), { transition: 'slide', reverse: true }); 
+        $('.mkdef').hide();
+        
+        // reset selection
+        
+        // TODO select currently selected calendar, no matter what new default instructions are set
+        
+        // unhighlight old one
+        var old = $('#calendar .calendars').find('.ui-icon-check').parent().parent();
+        old.find('.ui-icon').removeClass('ui-icon-check').addClass('ui-icon-none');
+        old.find('.mkdef').slideUp();
+        
+        // select new
+        var $icon = $default_calendar.find('.ui-icon');
+        $icon.removeClass('ui-icon-none').addClass('ui-icon-check');
+
+        selected_calendar = null;
+    });
+    $('#calendar .done').tap(function() {
+        if (selected_calendar) {
+            $('#edit_event .calendar').data('itemcal', selected_calendar).find('.detail').text(selected_calendar);
+        }
+        
+        $.mobile.changePage($('#edit_event'), { transition: 'slide', reverse: true });
+        $('.mkdef').hide();
+        selected_calendar = null;
+    });
+    $('#calendar .calendars').find('a').each(function(index) {
+        $(this).bind('tap', function() {
+            var old_sel = selected_calendar;
+            selected_calendar = $(this).text();
+            
+            if (old_sel == selected_calendar) {
+                return;
+            }
+            
+            console.log(selected_calendar);
+            
+            var $li = $(this).parent().parent().parent();
+            var $icon = $li.find('.ui-icon');
+            
+            // unhighlight old one
+            var old = $('#calendar .calendars').find('.ui-icon-check').parent().parent();
+            old.find('.ui-icon').removeClass('ui-icon-check').addClass('ui-icon-none');
+            old.find('.mkdef').slideUp();
+            
+            // select new
+            $icon.removeClass('ui-icon-none').addClass('ui-icon-check');
+            
+            //////
+            
+            var default_calendar_title = $default_calendar.find('a').text();
+            if (selected_calendar === default_calendar_title) {
+                return;
+            }
+            
+            $li.find('.mkdef').slideDown();
+        });
+    });
+    
+
     $('#edit_event .cancel').tap(function(event) {
         if (Templates.is_editing()) {
             Templates.disable_edit();
@@ -181,6 +279,9 @@ init = function() {
         }
         
         $.mobile.changePage($('#template_overview'), { reverse: true, transition: 'slideup' });
+    });
+    $('#edit_event .calendar').bind('tap', function(event) {
+        $.mobile.changePage($('#calendar'), { transition: 'slide' }); 
     });
 };
 

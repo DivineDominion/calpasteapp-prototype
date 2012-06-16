@@ -11,6 +11,18 @@ textarea {
 
 
 
+.mkdef {
+    display: none;
+    background: rgba(0,0,0,0.7);
+    text-align: center;
+    padding: 10px 0;
+    color: #eee;
+}
+
+.ui-listview .ui-icon-none {
+    background: transparent none center center no-repeat !important;
+}
+
 span.detail {
     float: right;
     text-align: right;

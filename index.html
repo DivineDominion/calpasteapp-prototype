@@ -51,7 +51,7 @@
         
         <ul data-role="listview" data-inset="true">
           <li>
-            <a href="#calendar" data-transition="slide">Calendar <span class="detail">Private</span></a>
+            <a href="#" class="calendar">Calendar <span class="detail">Private</span></a>
           </li>
         </ul>
         
@@ -78,21 +78,21 @@
   <div data-role="page" id="calendar">
     <div data-role="header" data-theme="a">
       <h1>Calendar</h1>
-      <a href="#" data-direction="reverse" data-rel="back">Back</a>
-      <a href="#" data-rel="back" data-transition="slide">Done</a>
+      <a href="#" class="cancel" data-direction="reverse" data-transition="slideup">Cancel</a>
+      <a href="#" class="done" data-theme="d">Done</a>
     </div>
     <div data-role="content">
       <form>
         <h4>On my iPhone</h4>
         
-        <ul data-role="listview" data-inset="true">
-          <li data-icon="check">
-            <a href="#">Privat</a>
+        <ul data-role="listview" data-inset="true" class="calendars">
+          <li data-icon="none">
+            <a href="#">Private</a>
           </li>
-          <li data-icon="custom">
+          <li data-icon="none">
             <a href="#">Work</a>
           </li>
-          <li data-icon="custom">
+          <li data-icon="none">
             <a href="#">Bob's Calendar</a>
           </li>
         </ul>
