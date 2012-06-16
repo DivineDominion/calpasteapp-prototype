@@ -17,28 +17,29 @@
             this.items.push(title);
             
             var new_elem = '<li>'
-                         + '    <a href="#assign" class="template" data-transition="slideup">'
+                         + '    <a href="#" class="template">'
                          + '        <h3 class="ui-li-heading">' + title + '</h3>'
                          + '    </a>'
                          + '</li>';
             this.selector.append(new_elem);
-            this.selector.listview("refresh"); // apply JQ styling
-            // FIXME cannot call methods on listview prior to initialization; attempted to call method 'refresh'
+            
+            // re-apply JQ styling to list elements if list exists
+            if (this.selector.hasClass('ui-listview')) {
+                this.selector.listview("refresh"); 
+            }
         }
     };
     
     // global initializer
     init = function() {
         Templates.add("Work shift");
-
+        
         // Bind events on items
-        $('#template_overview .template').bind('tap', function(event) {
+        $('#template_overview .templates a').bind('tap', function(event) {
             console.log('test');
+            $.mobile.changePage($('#assign'), { transition: 'slideup' });
         });
 
-        // Disable "Done" button by default, until Title is entered
-        $('#new_entry').bind('pagecreate', function(event) {    
-        });
         $('#new_entry .done').tap(function(event) {
             var isValid = true;
             // TODO validate values
