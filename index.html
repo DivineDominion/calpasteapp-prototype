@@ -2,102 +2,135 @@
 <html>
 <head>
   <meta charset="UTF-8" />
-  <title>jQTouch &beta;</title>
-  <link rel="stylesheet" href="./themes/css/apple.css" title="jQTouch">
+  <title>iCal Templater</title>
 
-  <script src="./src/lib/zepto.min.js" type="text/javascript" charset="utf-8"></script>
-  <script src="./src/jqtouch.min.js" type="text/javascript" charset="utf-8"></script>
-  <!-- Uncomment the following two lines (and comment out the previous two) to use jQuery instead of Zepto. -->
-  <!-- <script src="./src/lib/jquery-1.7.min.js" type="application/x-javascript" charset="utf-8"></script> -->
-  <!-- <script src="./src/jqtouch-jquery.min.js" type="application/x-javascript" charset="utf-8"></script> -->
+  <link rel="stylesheet" href="jqm/jquery.mobile-1.1.0.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="jqm/ios_inspired/styles.css">
 
-  <script src="./handler.js" type="text/javascript" charset="utf-8"></script>
-  <style type="text/css" media="screen">
-  #jqt.fullscreen #home .info {
-    display: none;
-  }
-  div#jqt #about {
-    padding: 100px 10px 40px;
-    text-shadow: rgba(0, 0, 0, 0.3) 0px -1px 0;
-    color: #999;
-    font-size: 13px;
-    text-align: center;
-    background: #161618;
-  }
-  div#jqt #about p {
-    margin-bottom: 8px;
-  }
-  div#jqt #about a {
-    color: #fff;
-    font-weight: bold;
-    text-decoration: none;
-  }
-  </style>
 </head>
 <body>
-  <div id="jqt">
-    <div id="forms">
-      <div class="toolbar">
-        <h1>Forms</h1>
-        <a href="#" class="back">Back</a>
-      </div>
-      <form class="scroll">
-        <ul class="edit rounded">
-          <li><input type="text" name="name" placeholder="Text" id="some_name" /></li>
-          <li><input type="search" name="search" placeholder="Search" id="some_name" /></li>
-          <li><input type="tel" name="phone" placeholder="Phone" id="some_name"  /></li>
-          <li><input type="number" name="zip" placeholder="Numbers" id="some_name" /></li>                    
-          <li><input type="email" name="email" placeholder="Email" id="some_name" /></li>
-          <li><input type="url" name="url" placeholder="Url" id="some_name" /></li>
-          <li><textarea placeholder="Textarea" ></textarea></li>
-          <li>Sample Toggle <span class="toggle"><input type="checkbox" /></span></li>
-          <li class="arrow">
-            <select id="lol">
-              <optgroup label="Swedish Cars">
-                <option value ="volvo">Volvo</option>
-                <option value ="saab">Saab</option>
-              </optgroup>
-              <optgroup label="German Cars">
-                <option value ="mercedes">Mercedes</option>
-                <option value ="audi">Audi</option>
-              </optgroup>
-            </select>
-          </li>
-          <li><input type="password" name="some_name" value="iphonedelcopon" id="some_name" /></li>
-          <li><input type="checkbox" name="food" value="punch" title="Punch" /></li>
-          <li><input type="checkbox" name="food" value="pie" checked="checked" title="Pie" /></li>
-          <li><input type="radio" name="bag" value="paper" title="Paper" /></li>
-          <li><input type="radio" name="bag" value="plastic" title="Plastic" /></li>
-        </ul>
-      </form>
+
+  <div data-role="page" id="home" class="template_overview">
+    <div data-role="header" data-theme="a">
+      <h1>Templates</h1>
+      <a href="#" data-direction="reverse">Edit</a>
+      <a href="#new_entry" data-icon="add" data-iconpos="notext" data-transition="slideup" class="add_template">+</a>
     </div>
-    <div id="metal" class="current">
-      <div class="toolbar">
-        <h1>Prototype</h1>
-      </div>
-      <ul class="metal scroll">
-        <!-- <li class="arrow"><a href="#"><small>AM</small> 9:40 <em>Buenos Aires</em></a></li> -->
-        <li class="arrow"><a href="#forms">Arbeiten <em>4h 0min</em></a></li>
+    <div data-role="content">
+      <ul data-role="listview" data-inset="false" class="templates">
+        <li>
+          <a href="#assign" class="template" data-transition="slideup">
+            <h3 class="ui-li-heading">Work shift</h3>
+            <!-- <p class="ui-li-desc">All your favorites from aarkvarks to zebras.</p> -->
+          </a>
+        </li>
       </ul>
     </div>
-    <form id="ajax_post" action="ajax_post.php" method="POST" class="form">
-      <div class="toolbar">
-        <h1>Post Demo</h1>
-        <a class="back" href="#">Ajax</a>
-      </div>
-      <div class="scroll">
-        <ul class="rounded">
-          <li><input type="text" name="zip" value="" placeholder="Zip Code" /></li>
-        </ul>
-        <h2>Favorite color?</h2>
-        <ul class="rounded">
-          <li><input type="radio" name="color" value="green" title="Green" /></li>
-          <li><input type="radio" name="color" value="blue" title="Blue" /></li>
-          <li><input type="radio" name="color" value="red" title="Red" /></li>
-        </ul>
-        <a style="margin-top: 10px; margin-bottom: 10px; color:rgba(0,0,0,.9)" href="#" class="submit whiteButton">Submit</a>
-      </div>
-    </form>
   </div>
+
+  <!-- Create new Template entry -->
+  <div data-role="page" id="new_entry">
+    <div data-role="header" data-theme="a">
+      <h1>New Entry</h1>
+      <a href="#home" data-direction="reverse" data-transition="slideup">Cancel</a>
+      <a href="#home" class="done" data-direction="reverse" data-transition="slideup" data-theme="d">Done</a>
+    </div>
+    <div data-role="content">
+      <form>
+        <ul data-role="listview" data-inset="true">
+          <li>
+            <input type="text" name="title" id="title" value="" placeholder="Title"/>
+          </li>
+          <li>
+            <input type="text" name="place" id="place" value="" placeholder="Place"/>
+          </li>
+        </ul>
+        
+        <ul data-role="listview" data-inset="true">
+          <li>
+            <a href="#" class="">Duration <span class="detail">4h 0min</span></a>
+          </li>
+        </ul>
+        
+        <ul data-role="listview" data-inset="true">
+          <li>
+            <a href="#calendar" data-transition="slide">Calendar <span class="detail">Private</span></a>
+          </li>
+        </ul>
+        
+        <ul data-role="listview" data-inset="true">
+          <li>
+            <a href="#" class="">Reminder <span class="detail">None</span></a>
+          </li>
+        </ul>
+        
+        <div data-role="fieldcontain" class="ui-hide-label">
+          <label for="url">URL</label>
+          <input type="text" name="url" id="url" value="" placeholder="URL"/>
+        </div>
+        
+        <div data-role="fieldcontain" class="ui-hide-label">
+          <label for="notes">Notes</label>
+          <textarea name="notes" id="notes" placeholder="Notes"></textarea>
+        </div>
+      </form>
+    </div>    
+  </div>
+  
+  <div data-role="page" id="calendar">
+    <div data-role="header" data-theme="a">
+      <h1>Calendar</h1>
+      <a href="#" data-direction="reverse" data-rel="back">Back</a>
+      <a href="#" data-rel="back" data-transition="slide">Done</a>
+    </div>
+    <div data-role="content">
+      <form>
+        <h4>On my iPhone</h4>
+        
+        <ul data-role="listview" data-inset="true">
+          <li data-icon="check">
+            <a href="#">Privat</a>
+          </li>
+          <li data-icon="custom">
+            <a href="#">Work</a>
+          </li>
+          <li data-icon="custom">
+            <a href="#">Bob's Calendar</a>
+          </li>
+        </ul>
+      </form>
+    </div>    
+  </div>
+  
+  <!-- assign a Template to -->
+  <div data-role="page" id="assign">
+    <div data-role="header" data-theme="a">
+      <h1>Assign</h1>
+      <a href="#home" data-direction="reverse" data-transition="slideup">Cancel</a>
+      <a href="#home" data-direction="reverse" data-transition="slideup" data-theme="d">Done</a>
+    </div>
+    <div data-role="content">
+      <h4 class="event_title">TITLE</h4>
+      
+      <form>
+        <ul data-role="listview" data-inset="true">
+          <li>
+            <a href="#" class="event_time">Begin <span class="detail">Sa., 16. Jun 18:00</span><br>
+              End <span class="detail">19:00</span></a>
+          </li>
+        </ul>
+      </form>
+    </div>    
+  </div>
+  
+  
+  <script src="jqm/jquery-1.7.2.js"></script>
+  <script src="jqm/jquery.mobile-1.1.0.js"></script>
+  <script src="handler.js"></script>
+  
+  <script>
+  $(document).ready(init());
+  </script>
 </body>
 </html>
