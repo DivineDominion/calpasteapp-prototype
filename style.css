@@ -1,0 +1,73 @@
+span.detail {
+    float: right;
+    text-align: right;
+    font-weight: normal;
+    margin-right: 0.3em;
+}
+
+ul li input {
+    border: none !important;
+    box-shadow: none !important;
+}
+
+
+/* ---------------------------------------------------------------------- */
+
+
+/*
+    Passt Styling für JQM-basiertes iOS Theme an, um Button Klicks
+    sichtbar werden zu lassen.
+*/
+
+.ui-page:not(.ui-dialog) .ui-content .ui-btn:not(.ui-slider-handle):not(label):not(li):not(.ui-btn-left):not(.ui-btn-right):not(.ui-input-clear)  {
+    margin: 0.3125em 0;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+/*:not(label):not(li)*/
+.ui-page:not(.ui-dialog) .ui-content .ui-btn.ui-btn-down-c:not(.ui-slider-handle):not(label):not(.ui-btn-left):not(.ui-btn-right):not(.ui-input-clear) {
+    /* #015DE6*/
+    background-image: -webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(0, #015DE6),
+        color-stop(1, #058CF5)
+    );
+    background-image: -moz-linear-gradient(
+        center bottom,
+        #015DE6 0%,
+        #058CF5 100%
+    );
+}
+
+/*.ui-btn.ui-btn-down-c:not(.ui-slider-handle):not(li):not(label):not(.ui-btn-left):not(.ui-btn-right):not(.ui-input-clear) .ui-btn-text,
+*/
+.ui-btn.ui-btn-down-c:not(.ui-slider-handle):not(label):not(.ui-btn-left):not(.ui-btn-right):not(.ui-input-clear) .ui-btn-text,
+.ui-btn.ui-btn-down-c:not(.ui-slider-handle):not(label):not(.ui-btn-left):not(.ui-btn-right):not(.ui-input-clear) .ui-btn-text a    ,
+.ui-page:not(.ui-dialog) .ui-content li.ui-btn.ui-btn-down-c p {
+    color: white !important;
+    text-shadow: none;
+}
+
+/*.ui-page:not(.ui-dialog) .ui-content .ui-btn:not(.ui-slider-handle):not(label):not(li):not(.ui-btn-left):not(.ui-btn-right):not(.ui-input-clear) .ui-btn-inner {
+    padding: 0 !important;
+}
+*/
+.ui-block-a .ui-btn {
+    margin-right: 0.3125em !important; /* 5px */
+}
+
+.ui-block-b .ui-btn {
+    margin-left: 0.3125em !important; /* 5px */
+}
+
+.ui-grid-a a {
+    color: #999;
+}
+
+.ui-grid-a {
+    margin-bottom: 1em;
+}
