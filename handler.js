@@ -13,8 +13,22 @@
             console.log('test');
         });
         $('#new_entry .done').tap(function(event) {
-            console.log('add');
-            Templates.add('new');
+            var isValid = true;
+            // TODO validate values
+
+            if (isValid) {
+                var item = 'new';
+                // TODO read values
+                
+                Templates.add(item);
+                
+                // TODO reset values
+                
+                $.mobile.changePage($('#template_overview'), { reverse: true, transition: 'slideup' });
+            }
+        });
+        $('#new_entry .details :text').bind("change", function(event) {
+            console.log(":"+ $(this).val());
         });
         $('#assign .event_title').text('test!!');
 //        $('#assign .event_time')
