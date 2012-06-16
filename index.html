@@ -110,9 +110,11 @@
       
       <form>
         <ul data-role="listview" data-inset="true">
-          <li>
-            <a href="#" class="event_time">Begin <span class="detail">Sa., 16. Jun 18:00</span><br>
-              End <span class="detail">19:00</span></a>
+          <li class="datetime">
+            <label>Begin</label><input type="datetime-local" value="Sa., 16. Jun 18:00"/>
+          </li>
+          <li class="ui-disabled">
+            End <span class="detail">19:00</span>
           </li>
         </ul>
       </form>

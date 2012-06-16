@@ -16,7 +16,19 @@ ul li input {
     height: 18px;
     padding-top: 11px;
     padding-bottom: 11px;
+    line-height: 1em;
 }
+
+.ui-page .ui-li.datetime label {
+    display: inline;
+}
+
+.ui-page .ui-li.datetime .ui-input-text {
+    float: right !important;
+    display: inline !important;
+    width: auto !important;
+}
+
 
 /* ---------------------------------------------------------------------- */
 
