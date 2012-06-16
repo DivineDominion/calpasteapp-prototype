@@ -10,6 +10,7 @@ var Templates = (function() {
     var selector = $('#template_overview .templates');
     var items = [];
     var editing = false;
+    var current_item = null;
     
     var create_item = function(itemTitle) {
         if (!itemTitle) {
@@ -30,8 +31,9 @@ var Templates = (function() {
     
     var add_item = function(itemTitle) {    
         var item = create_item(itemTitle);
-        
-        selector.append('<li><a href="#" class="template" data-itemid="' + item.id + '">' + item.title + '</a></li>');
+        item.selector = $('<li data-itemid="' + item.id + '"><a href="#" class="template" data-itemid="' + item.id + '">' + item.title + '</a></li>');
+
+        selector.append(item.selector);
 
         // Bind events on template entries
         var $a = selector.find('li').last().find('a');
@@ -41,6 +43,10 @@ var Templates = (function() {
             template_item_clicked(id);
         });
 
+        refresh_list();
+    };
+    
+    var refresh_list = function() {
         // re-apply JQ styling to list elements if list exists
         if (selector.hasClass('ui-listview')) {
             selector.listview("refresh"); 
@@ -71,10 +77,11 @@ var Templates = (function() {
         }
 
         var item = items[id];
+        current_item = item;
 
-        $.mobile.changePage($('#new_entry'), { transition: 'slideup' });
-        $('#new_entry h1').text(item.title);
-        $('#new_entry #title').attr('value', item.title);
+        $.mobile.changePage($('#edit_event'), { transition: 'slideup' });
+        $('#edit_event h1').text(item.title);
+        $('#edit_event #title').attr('value', item.title);
     };
     
     var enable_edit = function() {
@@ -93,12 +100,23 @@ var Templates = (function() {
         // toggle edit button
         $('#template_overview .edit_templates').removeClass('toggled');
         
+        if (current_item) {
+            var entryTitle = $('#edit_event [name="title"]').val().trim();
+            if (entryTitle === "") {
+                entryTitle = current_item.title;
+            }
+            
+            current_item.title = entryTitle;
+            current_item.selector.find('a').text(current_item.title);
+        }
+        
         // remove Gear icon and add Arrow icon
         selector.find('li').each(function(index) {
             $(this).find('.ui-icon').addClass('ui-icon-arrow-r').removeClass('ui-icon-gear');
         });
         
         editing = false;
+        current_item = null;
     };
     
     return {
@@ -118,30 +136,43 @@ init = function() {
 
     // Focus datetime picker automatically
     $('#assign').bind("pageshow", function(event) {
-       $('#assign .datetime input').focus();
+       $('#assign .start input').focus();
     });
-    $('#assign .datetime').bind("vclick", function(event) {
-       $('#assign .datetime input').focus();
+    $('#assign .start').bind("vclick", function(event) {
+       $('#assign .start input').focus();
     });
-    $('#template_overview .edit_templates').toggle(
-        function() {
-            Templates.enable_edit();
-        }, function() {
-            Templates.disable_edit();
-        });
-    $('#template_overview .add_template').bind('tap', function(event) {
-        $.mobile.changePage($('#new_entry'), { transition: 'slideup' }); 
+    $('#assign .start input').bind("change", function(event) {
+        var starttime = $('#assign .start input').val();
+        $('#assign .end input').val(starttime);
+    });
 
-        // reset values
-        $('#new_entry h1').text('New Entry');
-        $('#new_entry input').attr('value', '');
-    });
-    
-    $('#new_entry .done').tap(function(event) {
+    $('#template_overview .edit_templates').bind('tap', function() {
         if (Templates.is_editing()) {
             Templates.disable_edit();
         } else {
-            var entryTitle = $('#new_entry [name="title"]').val().trim();
+            Templates.enable_edit();
+        }
+    });
+    $('#template_overview .add_template').bind('tap', function(event) {
+        $.mobile.changePage($('#edit_event'), { transition: 'slideup' }); 
+
+        // reset values
+        $('#edit_event h1').text('New Entry');
+        $('#edit_event input').attr('value', '');
+    });
+    
+    $('#edit_event .cancel').tap(function(event) {
+        if (Templates.is_editing()) {
+            Templates.disable_edit();
+        }
+        
+        $.mobile.changePage($('#template_overview'), { reverse: true, transition: 'slideup' });
+    });
+    $('#edit_event .done').tap(function(event) {
+        if (Templates.is_editing()) {
+            Templates.disable_edit();
+        } else {
+            var entryTitle = $('#edit_event [name="title"]').val().trim();
             if (entryTitle === "") {
                 entryTitle = 'New Entry';
             }
