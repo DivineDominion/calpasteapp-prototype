@@ -7,9 +7,16 @@ span.detail {
 
 ul li input {
     border: none !important;
-    box-shadow: none !important;
+    margin-top: -5px;
+    padding-bottom: 0 !important;
 }
 
+.ui-page .ui-input-text {
+    box-shadow: none;
+    height: 18px;
+    padding-top: 11px;
+    padding-bottom: 11px;
+}
 
 /* ---------------------------------------------------------------------- */
 

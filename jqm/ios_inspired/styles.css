@@ -469,13 +469,13 @@ input.ui-input-text, .ui-input-search {
 	line-height: 29px;
 	padding-top: 0;
 	padding-bottom: 0;
-	border-radius: 100px;
 	box-shadow: 0 1px 3px rgba(0,0,0,0.6) inset;
 	font-size: 14px;
 }
 
 .ui-input-search  input {
 	padding: 0 !important;
+	border-radius: 100px;
 }
 
 .ui-input-clear {
