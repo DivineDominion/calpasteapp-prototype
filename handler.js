@@ -195,16 +195,13 @@ init = function() {
                $li.find('a').append('<span class="detail">Default</span>');
                $default_calendar = $li;
             });
-        }); 
-    });
-    $('#calendar .cancel').tap(function() {
-        $.mobile.changePage($('#edit_event'), { transition: 'slide', reverse: true }); 
-        $('.mkdef').hide();
+        });
         
-        // reset selection
+        ////// reset calendar selection (here, to make anim. invisible)
         
         // TODO select currently selected calendar, no matter what new default instructions are set
         
+        $('.mkdef').hide();
         // unhighlight old one
         var old = $('#calendar .calendars').find('.ui-icon-check').parent().parent();
         old.find('.ui-icon').removeClass('ui-icon-check').addClass('ui-icon-none');
@@ -213,7 +210,12 @@ init = function() {
         // select new
         var $icon = $default_calendar.find('.ui-icon');
         $icon.removeClass('ui-icon-none').addClass('ui-icon-check');
-
+        
+    });
+    $('#calendar .cancel').tap(function() {
+        $.mobile.changePage($('#edit_event'), { transition: 'slide', reverse: true }); 
+        
+        // reset selection
         selected_calendar = null;
     });
     $('#calendar .done').tap(function() {
@@ -222,7 +224,6 @@ init = function() {
         }
         
         $.mobile.changePage($('#edit_event'), { transition: 'slide', reverse: true });
-        $('.mkdef').hide();
         selected_calendar = null;
     });
     $('#calendar .calendars').find('a').each(function(index) {
