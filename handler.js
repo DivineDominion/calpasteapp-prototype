@@ -16,12 +16,15 @@
             
             this.items.push(title);
             
-            var new_elem = '<li>'
-                         + '    <a href="#" class="template">'
-                         + '        <h3 class="ui-li-heading">' + title + '</h3>'
-                         + '    </a>'
-                         + '</li>';
-            this.selector.append(new_elem);
+            this.selector.append('<li><a href="#" class="template">' + title + '</a></li>');
+            
+            // Bind events on template entries
+            var $a = this.selector.find('li').last().find('a');
+            
+            $a.bind('tap', function(event) {
+                console.log('test');
+                $.mobile.changePage($('#assign'), { transition: 'slideup' });
+            });
             
             // re-apply JQ styling to list elements if list exists
             if (this.selector.hasClass('ui-listview')) {
@@ -33,12 +36,6 @@
     // global initializer
     init = function() {
         Templates.add("Work shift");
-        
-        // Bind events on items
-        $('#template_overview .templates a').bind('tap', function(event) {
-            console.log('test');
-            $.mobile.changePage($('#assign'), { transition: 'slideup' });
-        });
 
         $('#new_entry .done').tap(function(event) {
             var isValid = true;
