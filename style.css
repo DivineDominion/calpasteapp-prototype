@@ -29,6 +29,11 @@ ul li input {
     width: auto !important;
 }
 
+.ui-btn-down-a .ui-btn-inner,
+.ui-btn.toggled .ui-btn-inner {
+    background: rgba(0, 0, 0, 0.15);
+}
+
 
 /* ---------------------------------------------------------------------- */
 

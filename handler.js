@@ -75,6 +75,16 @@ init = function() {
     $('#assign .datetime').bind("vclick", function(event) {
        $('#assign .datetime input').focus();
     });
+    $('#template_overview .edit_templates').bind('tap', function(event) {
+        $edit = $('#template_overview .edit_templates');
+        
+        if ($edit.hasClass('toggled')) {
+            $edit.removeClass('toggled');
+        } else {
+            
+            $edit.addClass('toggled');
+        }
+    });
     $('#template_overview .add_template').bind('tap', function(event) {
         $.mobile.changePage($('#new_entry'), { transition: 'slideup' }); 
     });
