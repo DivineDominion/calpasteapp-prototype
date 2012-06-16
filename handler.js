@@ -75,23 +75,20 @@ init = function() {
     $('#assign .datetime').bind("vclick", function(event) {
        $('#assign .datetime input').focus();
     });
-    $('#template_overview .edit_templates').bind('tap', function(event) {
-        $edit = $('#template_overview .edit_templates');
+    $('#template_overview .edit_templates').toggle(
+        function() {
+            $('#template_overview .edit_templates').addClass('toggled');
         
-        if ($edit.hasClass('toggled')) {
-            $edit.removeClass('toggled');
-            
-            $('#template_overview .templates').find('li').each(function(index) {
-                $(this).find('.ui-icon').addClass('ui-icon-arrow-r').removeClass('ui-icon-gear');
-            });
-        } else {
-            $edit.addClass('toggled');
-            
             $('#template_overview .templates').find('li').each(function(index) {
                 $(this).find('.ui-icon').removeClass('ui-icon-arrow-r').addClass('ui-icon-gear');
             });
-        }
-    });
+        }, function() {
+            $('#template_overview .edit_templates').removeClass('toggled');
+        
+            $('#template_overview .templates').find('li').each(function(index) {
+                $(this).find('.ui-icon').addClass('ui-icon-arrow-r').removeClass('ui-icon-gear');
+            });
+        });
     $('#template_overview .add_template').bind('tap', function(event) {
         $.mobile.changePage($('#new_entry'), { transition: 'slideup' }); 
     });
