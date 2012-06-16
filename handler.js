@@ -6,10 +6,11 @@
 // 
 
 
-var Templates = {
-    selector: $('#template_overview .templates'),
-    items: [],
-    add: function(itemTitle) {
+var Templates = (function() {
+    var selector = $('#template_overview .templates');
+    var items = [];
+    
+    var create_item = function(itemTitle) {
         if (!itemTitle) {
             throw new StupidError("no title");
         }
@@ -17,38 +18,51 @@ var Templates = {
         var item = {
             title: itemTitle
         };
+
+        items.push(item);
+
+        var itemId = items.length - 1;
+        item.id = itemId;
         
-        this.items.push(item);
+        return item;
+    };
+    
+    var add_item = function(itemTitle) {    
+        var item = create_item(itemTitle);
         
-        var itemId = this.items.length;
-        
-        this.selector.append('<li><a href="#" class="template" data-itemid="' + itemId + '">' + itemTitle + '</a></li>');
-        
+        selector.append('<li><a href="#" class="template" data-itemid="' + item.id + '">' + item.title + '</a></li>');
+
         // Bind events on template entries
-        var $a = this.selector.find('li').last().find('a');
-        
+        var $a = selector.find('li').last().find('a');
+
         $a.bind('tap', function(event) {
             var id = $(this).data('itemid');
-            Templates.assign_template_item(id);
+            assign_template_item(id);
         });
-        
+
         // re-apply JQ styling to list elements if list exists
-        if (this.selector.hasClass('ui-listview')) {
-            this.selector.listview("refresh"); 
+        if (selector.hasClass('ui-listview')) {
+            selector.listview("refresh"); 
         }
-    },
-    assign_template_item: function(id) {
-        if (!id) {
+    };
+    
+    var assign_template_item = function(id) {
+        if ((!id && id !== 0) || id < 0) {
             throw new StupidError("no id");
         }
-        
-        var index = id - 1;
-        var item = this.items[index];
-        
+
+        var item = items[id];
+
         $.mobile.changePage($('#assign'), { transition: 'slideup' });
         $('#assign .event_title').text(item.title);
-    }
-};
+    };
+    
+    return {
+        selector: selector,
+        add: add_item,
+        assign_template_item: assign_template_item
+    };
+})();
 
 // global initializer
 init = function() {
