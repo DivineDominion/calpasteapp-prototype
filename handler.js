@@ -44,7 +44,7 @@ var Templates = (function() {
         });
         
         $a.bind('swiperight', function(event) {
-            alert("swipe");
+            item.selector.slideRight();
         });
 
         refresh_list();
