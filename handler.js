@@ -43,8 +43,18 @@ var Templates = (function() {
             template_item_clicked(id);
         });
         
-        $a.bind('swiperight', function(event) {
-            item.selector.slideRight();
+        $a.bind('swipe', function(event) {
+            item.selector.animate({
+                marginLeft: parseInt($(this).css('marginLeft'),10) == 0 ?
+                $(this).outerWidth() :
+                0
+            }, {
+                complete: function() {
+                    $(this).remove();
+                }
+            });
+            
+            // TODO remove from item array
         });
 
         refresh_list();
@@ -139,6 +149,8 @@ var Templates = (function() {
         
         // routine to quit pane
         $('#edit_event .done').trigger('tap');
+        
+        // TODO remove from item array
     };
     
     return {
