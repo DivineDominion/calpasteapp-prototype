@@ -373,8 +373,8 @@ var showDone = function( message, options ) {
         wrapperClass: 'ui-body-a',
         pageContainer: undefined
     };
-    $( "<div class='overlay ui-loader ui-overlay-shadow ui-corner-all "+ showMessageOptions.wrapperClass +"'><span class='iconic check'></span></div>" )
-    .css({ "display": "block", "opacity": 0.66, "top": $(window).scrollTop() + 100 })
+    $( "<div class='overlay ui-loader ui-overlay-shadow ui-corner-all "+ showMessageOptions.wrapperClass +"'><span class='check'></span></div>" )
+    .css({ "display": "block", "opacity": 0.66 })
     .appendTo( showMessageOptions.pageContainer == undefined ? $.mobile.activePage : showMessageOptions.pageContainer )
     .delay( showMessageOptions.delayTime )
     .fadeOut( showMessageOptions.fadeTime, function() {

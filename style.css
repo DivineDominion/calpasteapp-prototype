@@ -11,11 +11,15 @@ textarea {
 
 
 .overlay {
-    font-size: 140px;
-    line-height:200px;
-    text-align: center;
+    top: 140px;
     width: 200px;
     height: 200px;
+}
+.overlay .check {
+    display: block;
+    height: 200px;
+    background: url('check.png') 5px 20px no-repeat;
+    background-size: 190px auto;
 }
 
 .templates li .rem {
