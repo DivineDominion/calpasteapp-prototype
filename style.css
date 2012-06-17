@@ -10,12 +10,14 @@ textarea {
 }
 
 
-.overlay {
+#checkmodal {
+    display: none;
     top: 140px;
+    left: 60px;
     width: 200px;
     height: 200px;
 }
-.overlay .check {
+#checkmodal .check {
     display: block;
     height: 200px;
     background: url('check.png') 5px 20px no-repeat;

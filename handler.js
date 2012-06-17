@@ -365,19 +365,21 @@ StupidError.prototype.constructor = StupidError;
 
 // Show a custom message to the user (will be shown in the active page unless specified otherwise in options)
 var showDone = function( message, options ) {
-    $.mobile.hidePageLoadingMsg();
-
     var showMessageOptions = {
         delayTime: 800,
         fadeTime: 400,
         wrapperClass: 'ui-body-a',
         pageContainer: undefined
     };
-    $( "<div class='overlay ui-loader ui-overlay-shadow ui-corner-all "+ showMessageOptions.wrapperClass +"'><span class='check'></span></div>" )
+    $('#checkmodal')
     .css({ "display": "block", "opacity": 0.66 })
-    .appendTo( showMessageOptions.pageContainer == undefined ? $.mobile.activePage : showMessageOptions.pageContainer )
+//    .appendTo( showMessageOptions.pageContainer == undefined ? $.mobile.activePage : showMessageOptions.pageContainer )
     .delay( showMessageOptions.delayTime )
     .fadeOut( showMessageOptions.fadeTime, function() {
-        $( this ).remove();
+//        $( this ).remove();
     });
 };
+
+$('<img />').attr('src', 'check.png').load(function(){
+        console.log('preloaded');
+    });
