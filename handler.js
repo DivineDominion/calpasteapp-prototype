@@ -50,7 +50,7 @@ var Templates = (function() {
                 0
             }, {
                 complete: function() {
-                    $(this).slideUp();
+                    $(this).slideUp('fast');
                 }
             });
             
