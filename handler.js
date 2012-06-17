@@ -42,6 +42,10 @@ var Templates = (function() {
             var id = $(this).data('itemid');
             template_item_clicked(id);
         });
+        
+        $a.bind('swiperight', function(event) {
+            alert("swipe");
+        });
 
         refresh_list();
     };
