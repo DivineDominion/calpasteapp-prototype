@@ -10,7 +10,12 @@ textarea {
 }
 
 
-
+.ui-page .ui-header .ui-btn-right .ui-icon {
+    background-color: transparent !important;
+    background-image: url('jqm/images/icons-36-white.png') !important;
+    background-size: 776px 18px;
+    box-shadow: none !important;
+}
 .mkdef {
     display: none;
     background: rgba(0,0,0,0.7);
