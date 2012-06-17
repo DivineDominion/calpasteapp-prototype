@@ -10,6 +10,31 @@ textarea {
 }
 
 
+
+.templates li .rem {
+    z-index:100;
+    width: 40px;
+    height: 40px;
+    display: none;
+    float: left;
+}
+.templates li .rem .inner {
+    display: block;
+    width: 18px;
+    height: 18px;
+    background: red url('deletebtn.png') no-repeat;
+    background-size: 20px 20px;
+    box-shadow: 0 1px 2px rgba(255,255,255,0.6) inset,
+    0 1px 1px #888,
+    0 1px 0 #222;
+    border: 1px solid rgba(0,0,0,0.2);
+    margin: 10px 10px;
+    color: white;
+    text-align: center;
+    border-radius: 100px;
+}
+
+
 .ui-page .ui-header .ui-btn-right .ui-icon {
     background-color: transparent !important;
     background-image: url('jqm/images/icons-36-white.png') !important;

@@ -29,10 +29,24 @@ var Templates = (function() {
         return item;
     };
     
+    var remove_item_from_list = function(item) {
+        item.selector.animate({
+            marginLeft: parseInt(item.selector.css('marginLeft'),10) == 0 ?
+            item.selector.outerWidth() :
+            0
+        }, {
+            complete: function() {
+                item.selector.slideUp('fast');
+            }
+        });
+        
+        // TODO remove from item array
+    };
+    
     var add_item = function(itemTitle) {    
         var item = create_item(itemTitle);
         item.selector = $('<li data-itemid="' + item.id + '"><a href="#" class="template" data-itemid="' + item.id + '">' + item.title + '</a></li>');
-
+        
         selector.append(item.selector);
 
         // Bind events on template entries
@@ -44,17 +58,7 @@ var Templates = (function() {
         });
         
         $a.bind('swipe', function(event) {
-            item.selector.animate({
-                marginLeft: parseInt($(this).css('marginLeft'),10) == 0 ?
-                $(this).outerWidth() :
-                0
-            }, {
-                complete: function() {
-                    $(this).slideUp('fast');
-                }
-            });
-            
-            // TODO remove from item array
+            remove_item_from_list(item);
         });
 
         refresh_list();
@@ -108,6 +112,21 @@ var Templates = (function() {
         // remove Arrow icon and add Gear icon
         selector.find('li').each(function(index) {
             $(this).find('.ui-icon').removeClass('ui-icon-arrow-r').addClass('ui-icon-gear');
+            id = $(this).data("itemid");
+            
+            $rem = $(this).find('.rem');
+            
+            if ($rem.length == 0) {
+                // adds delete knob
+                $del = $('<div class="rem"><span class="inner">&ndash;</span></div>');
+                $del.bind('tap', function() {
+                    remove_item_from_list(items[id]);
+                });
+                $(this).prepend($del);
+            }
+            
+            $(this).find('.rem').css('display','block');
+            $(this).find('.ui-btn-inner').css('margin-left', '40px');
         });
         
         editing = true;
@@ -134,6 +153,9 @@ var Templates = (function() {
         // remove Gear icon and add Arrow icon
         selector.find('li').each(function(index) {
             $(this).find('.ui-icon').addClass('ui-icon-arrow-r').removeClass('ui-icon-gear');
+            
+            $(this).find('.rem').hide();
+            $(this).find('.ui-btn-inner').css('margin-left', '0px');
         });
         
         editing = false;
