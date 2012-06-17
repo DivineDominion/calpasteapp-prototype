@@ -343,11 +343,11 @@ init = function() {
             }
             
             Templates.add_item(entryTitle);
+            
+            showDone();
         }
         
         $.mobile.changePage($('#template_overview'), { reverse: true, transition: 'slideup' });
-        
-        showDone();
     });
     $('#edit_event .calendar').bind('tap', function(event) {
         $.mobile.changePage($('#calendar'), { transition: 'slide' }); 
@@ -373,10 +373,8 @@ var showDone = function( message, options ) {
     };
     $('#checkmodal')
     .css({ "display": "block", "opacity": 0.66 })
-//    .appendTo( showMessageOptions.pageContainer == undefined ? $.mobile.activePage : showMessageOptions.pageContainer )
     .delay( showMessageOptions.delayTime )
     .fadeOut( showMessageOptions.fadeTime, function() {
-//        $( this ).remove();
     });
 };
 
