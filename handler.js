@@ -207,6 +207,10 @@ init = function() {
     $('#assign').bind("pageshow", function(event) {
        $('#assign .start input').focus();
     });
+    $('#assign .done').bind('tap', function() {
+        showDone();
+        $.mobile.changePage($('#template_overview'), { transition: 'slideup', reverse: true }); 
+    });
     $('#assign .start').bind("vclick", function(event) {
        $('#assign .start input').focus();
     });
@@ -214,6 +218,7 @@ init = function() {
         var starttime = $('#assign .start input').val();
         $('#assign .end input').val(starttime);
     });
+    
 
     $('#template_overview .edit_templates').bind('tap', function() {
         if (Templates.is_editing()) {
@@ -343,8 +348,6 @@ init = function() {
             }
             
             Templates.add_item(entryTitle);
-            
-            showDone();
         }
         
         $.mobile.changePage($('#template_overview'), { reverse: true, transition: 'slideup' });
