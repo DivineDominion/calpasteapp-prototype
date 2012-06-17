@@ -111,22 +111,27 @@ var Templates = (function() {
         
         // remove Arrow icon and add Gear icon
         selector.find('li').each(function(index) {
-            $(this).find('.ui-icon').removeClass('ui-icon-arrow-r').addClass('ui-icon-gear');
-            id = $(this).data("itemid");
+            var $li = $(this);
+            $li.find('.ui-icon').removeClass('ui-icon-arrow-r').addClass('ui-icon-gear');
+            var id = $li.data("itemid");
             
-            $rem = $(this).find('.rem');
+            // search delete knob
+            var $rem = $li.find('.rem');
             
+            // .. and add if nonexistent
             if ($rem.length == 0) {
                 // adds delete knob
-                $del = $('<div class="rem"><span class="inner">&ndash;</span></div>');
+                var $del = $('<div class="rem"><span class="inner">&ndash;</span></div>');
+                console.log(id);
                 $del.bind('tap', function() {
+                    console.log(id);
                     remove_item_from_list(items[id]);
                 });
-                $(this).prepend($del);
+                $li.prepend($del);
             }
             
-            $(this).find('.rem').css('display','block');
-            $(this).find('.ui-btn-inner').css('margin-left', '40px');
+            $li.find('.rem').css('display','block');
+            $li.find('.ui-btn-inner').css('margin-left', '40px');
         });
         
         editing = true;
@@ -218,6 +223,10 @@ init = function() {
         }
     });
     $('#template_overview .add_template').bind('tap', function(event) {
+        if (Templates.is_editing()) {
+            Templates.disable_edit();
+        }
+        
         $.mobile.changePage($('#edit_event'), { transition: 'slideup' }); 
 
         // reset values
@@ -247,8 +256,6 @@ init = function() {
             $li.append(def);
             
             def.bind('tap', function(event) {
-               console.log('def');
-
                // undefault old one
                $default_calendar.find('.detail').remove();
 
@@ -295,8 +302,6 @@ init = function() {
             if (old_sel == selected_calendar) {
                 return;
             }
-            
-            console.log(selected_calendar);
             
             var $li = $(this).parent().parent().parent();
             var $icon = $li.find('.ui-icon');
