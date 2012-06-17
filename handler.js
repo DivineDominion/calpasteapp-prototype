@@ -346,6 +346,8 @@ init = function() {
         }
         
         $.mobile.changePage($('#template_overview'), { reverse: true, transition: 'slideup' });
+        
+        showDone();
     });
     $('#edit_event .calendar').bind('tap', function(event) {
         $.mobile.changePage($('#calendar'), { transition: 'slide' }); 
@@ -360,3 +362,22 @@ function StupidError(message) {
 }
 StupidError.prototype = new Error();
 StupidError.prototype.constructor = StupidError;
+
+// Show a custom message to the user (will be shown in the active page unless specified otherwise in options)
+var showDone = function( message, options ) {
+    $.mobile.hidePageLoadingMsg();
+
+    var showMessageOptions = {
+        delayTime: 800,
+        fadeTime: 400,
+        wrapperClass: 'ui-body-a',
+        pageContainer: undefined
+    };
+    $( "<div class='overlay ui-loader ui-overlay-shadow ui-corner-all "+ showMessageOptions.wrapperClass +"'><span class='iconic check'></span></div>" )
+    .css({ "display": "block", "opacity": 0.66, "top": $(window).scrollTop() + 100 })
+    .appendTo( showMessageOptions.pageContainer == undefined ? $.mobile.activePage : showMessageOptions.pageContainer )
+    .delay( showMessageOptions.delayTime )
+    .fadeOut( showMessageOptions.fadeTime, function() {
+        $( this ).remove();
+    });
+};

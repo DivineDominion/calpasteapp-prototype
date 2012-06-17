@@ -1,0 +1,3 @@
+@font-face { font-family: 'IconicFill'; src: url('iconic_fill.eot'); src: local('IconicFill'), url('iconic_fill.svg#iconic') format('svg'), url('iconic_fill.otf') format('opentype'); }
+.iconic { display:inline-block; font-family: 'IconicFill'; }
+.check:before {content:'\2713';}
