@@ -88,6 +88,9 @@ var Templates = (function() {
         // toggle edit button
         $('#template_overview .edit_templates').addClass('toggled');
         
+        // display edit page delete button
+        $('#edit_event .delete').css('display','block');
+        
         // remove Arrow icon and add Gear icon
         selector.find('li').each(function(index) {
             $(this).find('.ui-icon').removeClass('ui-icon-arrow-r').addClass('ui-icon-gear');
@@ -100,6 +103,10 @@ var Templates = (function() {
         // toggle edit button
         $('#template_overview .edit_templates').removeClass('toggled');
         
+        // hide edit page delete button
+        $('#edit_event .delete').hide();
+        
+        // update current item if edited
         if (current_item) {
             var entryTitle = $('#edit_event [name="title"]').val().trim();
             if (entryTitle === "") {
@@ -119,9 +126,21 @@ var Templates = (function() {
         current_item = null;
     };
     
+    var delete_current = function() {
+        if (!current_item) {
+            throw StupidError("no current item");
+        }
+        
+        selector.find('[data-itemid="'+current_item.id+'"]').remove();
+        
+        // routine to quit pane
+        $('#edit_event .done').trigger('tap');
+    };
+    
     return {
         selector: selector,
         add_item: add_item,
+        delete_current: delete_current,
         enable_edit: enable_edit,
         disable_edit: disable_edit,
         is_editing: function() { 
@@ -137,6 +156,10 @@ init = function() {
     var $default_calendar = null;
     var selected_calendar = null;
 
+    $('#edit_event .delete').bind('tap', function(event) {
+        Templates.delete_current();
+    });
+    
     // Focus datetime picker automatically
     $('#assign').bind("pageshow", function(event) {
        $('#assign .start input').focus();

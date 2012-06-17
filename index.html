@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0, maximum-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
   
-  <link rel="stylesheet" href="jqm/jquery.mobile-1.1.0.css">
+  <link rel="stylesheet" href="jqm/jquery.mobile-1.1.0.min.css">
   <link rel="stylesheet" href="jqm/ios_inspired/styles.css">
   <link rel="stylesheet" href="style.css">
 
@@ -71,6 +71,10 @@
           <label for="notes">Notes</label>
           <textarea name="notes" id="notes" placeholder="Notes"></textarea>
         </div>
+        
+        <div data-role="fieldcontain" class="ui-hide-label">
+          <a href="#" class="delete" data-role="button">Delete</a>
+        </div>
       </form>
     </div>    
   </div>
@@ -124,8 +128,8 @@
   </div>
   
   
-  <script src="jqm/jquery-1.7.2.js"></script>
-  <script src="jqm/jquery.mobile-1.1.0.js"></script>
+  <script src="jqm/jquery-1.7.2.min.js"></script>
+  <script src="jqm/jquery.mobile-1.1.0.min.js"></script>
   <script src="handler.js"></script>
   
   <script>

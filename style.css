@@ -61,6 +61,24 @@ ul li input {
 }
 
 
+/* delete btn */
+#edit_event a.delete {
+    background: url('deletebtn.png') red repeat-x !important;
+    background-clip: border-box;
+    background-size: 64px 100%;
+    display: none;
+}
+#edit_event a.delete .ui-btn-inner,
+#edit_event a.delete .ui-btn-text {
+    box-shadow: none !important;
+    border: 0;
+    background: transparent !important;
+}
+#edit_event a.delete .ui-btn-text {
+    color: white !important;
+    text-shadow: 0 -1px 1px #333 !important;
+}
+
 /* ---------------------------------------------------------------------- */
 
 
