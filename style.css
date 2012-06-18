@@ -9,6 +9,9 @@ textarea {
     -webkit-user-select: text;
 }
 
+b b {
+    font-weight: normal;
+}
 i {
     letter-spacing: 1px;
 }
