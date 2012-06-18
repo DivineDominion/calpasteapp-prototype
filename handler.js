@@ -290,7 +290,7 @@ init = function() {
         selected_calendar = null;
     });
     $('#calendar .calendars').find('a').each(function(index) {
-        $(this).bind('tap', function() {
+        $(this).bind('vclick', function() {
             var $li = $(this).parent().parent().parent();
             var old_sel = selected_calendar;
             selected_calendar = $(this).text();
@@ -320,7 +320,7 @@ init = function() {
             var $def = $li.find('.mkdef');
 
             $def.slideDown('200', function() {
-                $def.one('tap', function(event) {
+                $def.one('vclick', function(event) {
                    // undefault old one
                    $default_calendar.find('.detail').remove();
 
