@@ -252,22 +252,11 @@ init = function() {
             var $li = $(this);
             
             // abort on second try to create divs
-            if ($li.find('.mkdef').length !== 0) {
-                return;
+            if ($li.find('.mkdef').length === 0) {
+                var def = $('<div class="mkdef">make default</div>');
+                $li.append(def);
+                
             }
-            
-            
-            var def = $('<div class="mkdef">make default</div>');
-            $li.append(def);
-            
-            def.bind('tap', function(event) {
-               // undefault old one
-               $default_calendar.find('.detail').remove();
-
-               // default new one
-               $li.find('a').append('<span class="detail">Default</span>');
-               $default_calendar = $li;
-            });
         });
         
         ////// reset calendar selection (here, to make anim. invisible)
@@ -301,6 +290,7 @@ init = function() {
     });
     $('#calendar .calendars').find('a').each(function(index) {
         $(this).bind('tap', function() {
+            var $li = $(this).parent().parent().parent();
             var old_sel = selected_calendar;
             selected_calendar = $(this).text();
             
@@ -308,7 +298,7 @@ init = function() {
                 return;
             }
             
-            var $li = $(this).parent().parent().parent();
+            
             var $icon = $li.find('.ui-icon');
             
             // unhighlight old one
@@ -326,7 +316,17 @@ init = function() {
                 return;
             }
             
-            $li.find('.mkdef').slideDown();
+            var $def = $li.find('.mkdef');
+
+            $def.slideDown();
+            $def.one('tap', function(event) {
+               // undefault old one
+               $default_calendar.find('.detail').remove();
+
+               // default new one
+               $li.find('a').append('<span class="detail">Default</span>');
+               $default_calendar = $li;
+            });
         });
     });
     
