@@ -268,7 +268,6 @@ init = function() {
         // unhighlight old one
         var old = $('#calendar .calendars').find('.ui-icon-check').parent().parent();
         old.find('.ui-icon').removeClass('ui-icon-check').addClass('ui-icon-none');
-        //old.find('.mkdef').slideUp();
         
         // select new
         var $icon = $default_calendar.find('.ui-icon');
@@ -319,6 +318,7 @@ init = function() {
             
             var $def = $li.find('.mkdef');
 
+            // FIXME tapping shortly on "make default" activates <li> beneath, too
             $def.slideDown('200', function() {
                 $def.one('vclick', function(event) {
                    // undefault old one
