@@ -264,10 +264,11 @@ init = function() {
         // TODO select currently selected calendar, no matter what new default instructions are set
         
         $('.mkdef').hide();
+
         // unhighlight old one
         var old = $('#calendar .calendars').find('.ui-icon-check').parent().parent();
         old.find('.ui-icon').removeClass('ui-icon-check').addClass('ui-icon-none');
-        old.find('.mkdef').slideUp();
+        //old.find('.mkdef').slideUp();
         
         // select new
         var $icon = $default_calendar.find('.ui-icon');
@@ -326,6 +327,8 @@ init = function() {
                    // default new one
                    $li.find('a').append('<span class="detail">Default</span>');
                    $default_calendar = $li;
+                   
+                   $(this).slideUp();
                 });
                 
             });
