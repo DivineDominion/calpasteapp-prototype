@@ -318,14 +318,16 @@ init = function() {
             
             var $def = $li.find('.mkdef');
 
-            $def.slideDown();
-            $def.one('tap', function(event) {
-               // undefault old one
-               $default_calendar.find('.detail').remove();
+            $def.slideDown('200', function() {
+                $def.one('tap', function(event) {
+                   // undefault old one
+                   $default_calendar.find('.detail').remove();
 
-               // default new one
-               $li.find('a').append('<span class="detail">Default</span>');
-               $default_calendar = $li;
+                   // default new one
+                   $li.find('a').append('<span class="detail">Default</span>');
+                   $default_calendar = $li;
+                });
+                
             });
         });
     });
