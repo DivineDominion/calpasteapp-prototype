@@ -12,10 +12,10 @@ textarea {
 i {
     letter-spacing: 1px;
 }
-h1,
-h2,
-h3,
-h4,
+h1:first-child,
+h2:first-child,
+h3:first-child,
+h4:first-child,
 form.details ul:first-child {
     margin-top: 0;
 }
