@@ -18,7 +18,8 @@ var Templates = (function() {
         }
         
         var item = {
-            title: itemTitle
+            title: itemTitle,
+            calendar: "Private"
         };
 
         items.push(item);
@@ -88,7 +89,9 @@ var Templates = (function() {
 
         $.mobile.changePage($('#assign'), { transition: 'slideup' });
         $('#assign .event_title').text(item.title);
+        $('#assign .event_cal').text(item.calendar);
     };
+    
     var edit_template_item = function(id) {
         if ((!id && id !== 0) || id < 0) {
             throw new StupidError("no id");
@@ -205,7 +208,7 @@ init = function() {
     
     // Focus datetime picker automatically
     $('#assign').bind("pageshow", function(event) {
-       $('#assign .start input').focus();
+       $('#assign .start').trigger('vclick');
     });
     $('#assign .done').bind('tap', function() {
         showDone();

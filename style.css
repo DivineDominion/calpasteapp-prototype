@@ -9,6 +9,16 @@ textarea {
     -webkit-user-select: text;
 }
 
+i {
+    letter-spacing: 1px;
+}
+h1,
+h2,
+h3,
+h4,
+form.details ul:first-child {
+    margin-top: 0;
+}
 
 #checkmodal {
     display: none;
@@ -48,7 +58,7 @@ textarea {
 }
 
 
-.ui-page .ui-header .ui-btn-right .ui-icon {
+.ui-page .ui-header .ui-btn-left .ui-icon {
     background-color: transparent !important;
     background-image: url('jqm/images/icons-36-white.png') !important;
     background-size: 776px 18px;
