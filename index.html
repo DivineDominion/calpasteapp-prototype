@@ -12,11 +12,38 @@
 </head>
 <body>
 
+  <div data-role="page" id="intro" style="background: white;">
+    <div data-role="header" data-theme="a">
+      <h1>Hello!</h1>
+      <a href="#template_overview" class="ui-btn-right" data-transition="slideup" data-direction="reverse">Start</a>
+    </div>
+    <div data-role="content">
+      <h3>Wishlist for Feedback</h3>
+      <p>
+        I love to know what you think of this app “proposal”!
+      </p>
+      <p>
+        Additionally, I’d like you to test a few things in particular:
+      </p>
+      <ul>
+        <li><b>Pick a different calendar</b>: does the <i>“make default”</i> button make sense to you?</li>
+        <li><b>Assign a shift</b>.  Do you miss the ability to extend the shift’s duration manually?</li>
+      </ul>
+      <p>
+        <small>I build this prototype with jQuery Mobile.  Its functionality is a bit limited to save time for actual coding.</small>
+      </p>
+      <strong>Thanks for helping me improve the app!</strong>
+      <p>
+        <b><small>Please use the UI elements <i>slowly</i> because jQuery Mobile doesn't respond to some events very well.</small></b>
+      </p>
+    </div>
+  </div>
+  
   <div data-role="page" id="template_overview">
     <div data-role="header" data-theme="a">
       <h1>Templates</h1>
-      <a class="edit_templates" href="#" data-direction="reverse">Edit</a>
       <a class="add_template" href="#" data-icon="add" data-iconpos="notext">+</a>
+      <a class="edit_templates" href="#" data-direction="reverse">Edit</a>
     </div>
     <div data-role="content">
       <ul data-role="listview" data-inset="false" class="templates">
@@ -121,10 +148,14 @@
             <label>Begin</label><input type="datetime-local" value="2012-06-16T18:00"/>
           </li>
           <li class="ui-disabled datetime end">
-            End <input type="datetime-local" value="2012-06-16T22:00"/>
+            End <input type="datetime-local" value="(Start time + Duration)"/>
           </li>
         </ul>
       </form>
+      
+      <p>
+        Created in <span class="event_cal">CAL</span>.
+      </p>
     </div>    
   </div>
   
